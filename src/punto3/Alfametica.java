@@ -5,9 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 
-public class Alfamemica {
+public class Alfametica {
 	
-	public Alfamemica(){
+	public Alfametica(){
 		
 	}
 	
