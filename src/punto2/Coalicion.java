@@ -4,50 +4,57 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-
 public class Coalicion {
 
 	public Coalicion() {
 
 	}
 
+	// El metodo va realizando las combinaciones de acciones
+	// posibles de la suma de las acciones del socio n con las de los socios
+	// 0..indiceSumado
 	private double calcularMaximaNomina(int[] p, double maxNomina, int sumaAcciones, int indiceSumado) {
-		System.out.println("max "+maxNomina+" suma acciones "+sumaAcciones +" indice sumado "+indiceSumado);
-		System.out.println(" ");
-		double maxTemp=maxNomina;
-		
+
+		double maxTemp = maxNomina;
+		// si la suma de acciones es menor a 50 es nesesario seguir sumando.
 		if (sumaAcciones <= 50) {
 			int indice = indiceSumado - 1;
+
 			while (indice >= 0) {
-				System.out.println("iteracion "+p[indice] +" con el indice sumado "+p[indiceSumado]);
-				double respTemp=calcularMaximaNomina(p, maxNomina, sumaAcciones + p[indice], indice);
-				if(maxTemp<respTemp){
-					maxTemp=respTemp;
+				double respTemp = calcularMaximaNomina(p, maxNomina, sumaAcciones + p[indice], indice);
+				if (maxTemp < respTemp) {
+					maxTemp = respTemp;
 				}
 				indice--;
 			}
-			if(indiceSumado-1>=0){
-			return calcularMaximaNomina(p, maxTemp, p[p.length - 1] + p[indiceSumado - 1], indiceSumado - 1);
-			}else{
+			if (indiceSumado - 1 >= 0) {
+				//se continua comparando la suma del socio n con el socio indiceSumado - 1
+				return calcularMaximaNomina(p, maxTemp, p[p.length - 1] + p[indiceSumado - 1], indiceSumado - 1);
+			} else {
+				// termino de comparar con todas la acciones, aca pasa si la
+				// suma del socio 0 con el socio n no es mayor a la mitad
 				return maxTemp;
 			}
-		} else{
+
+		} else {
+			// Cuando ya no se reguiere sumar, se procede a calcular la nomina
+			// con la actual combinacion
+			// Conparandola con la maxNomina se returna la mayor
 
 			double nomina = (p[p.length - 1] * 100) / sumaAcciones;
 			if (nomina > maxNomina) {
 				return nomina;
-			}
-			else{
+			} else {
 				return maxNomina;
-			}			
-			
+			}
+
 		}
 
 	}
 
 	public static void main(String[] args) throws Exception {
 		BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
-		Coalicion coliacio;
+		Coalicion coliacion;
 
 		while (true) {
 			int n;
@@ -87,11 +94,11 @@ public class Coalicion {
 			} catch (NumberFormatException e) {
 				throw new Exception("El p_" + (i + 1) + " no es un entero para el socio " + i);
 			}
-			coliacio= new Coalicion();
-	
-			double resp= coliacio.calcularMaximaNomina(p, 0, p[p.length-1], p.length-1);
-			System.out.println("nomina maxima "+resp);
-			
+			//
+			coliacion = new Coalicion();
+			// inico metodo recursivo
+			double resp = coliacion.calcularMaximaNomina(p, 0, p[p.length - 1], p.length - 1);
+			System.out.println("nomina maxima " + resp);
 
 		}
 	}
