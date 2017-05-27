@@ -3,6 +3,9 @@ package punto2;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 public class Coalicion {
 
@@ -13,7 +16,7 @@ public class Coalicion {
 	// El metodo va realizando las combinaciones de acciones
 	// posibles de la suma de las acciones del socio n con las de los socios
 	// 0..indiceSumado
-	private double calcularMaximaNomina(int[] p, double maxNomina, int sumaAcciones, int indiceSumado) {
+	private double calcularMaximaNomina(int[] p, double maxNomina, double sumaAcciones, int indiceSumado) {
 
 		double maxTemp = maxNomina;
 		// si la suma de acciones es menor a 50 es nesesario seguir sumando.
@@ -98,8 +101,13 @@ public class Coalicion {
 			coliacion = new Coalicion();
 			// inico metodo recursivo
 			double resp = coliacion.calcularMaximaNomina(p, 0, p[p.length - 1], p.length - 1);
-			System.out.println("nomina maxima " + resp);
+			
 
+			DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols(Locale.GERMAN);
+			otherSymbols.setDecimalSeparator('.');
+			otherSymbols.setGroupingSeparator(' '); 
+			DecimalFormat df = new DecimalFormat("#0.00", otherSymbols);
+			System.out.println(df.format(resp));
 		}
 	}
 }
