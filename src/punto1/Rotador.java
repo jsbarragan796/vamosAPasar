@@ -28,8 +28,7 @@ public class Rotador {
 		
 		for (int i = 0; i < a.length ; i++) {
 			if (i >= p && i < q) {					
-				int j = ((((i + k - p) % (q - p)) + (q - p)) % (q - p))+p;
-				
+				int j = ((((i + k - p) % (q - p)) + (q - p)) % (q - p))+p;				
 				resp[j] = a[i];
 			} else {
 				resp[i] = a[i];
@@ -46,6 +45,7 @@ public class Rotador {
 		while(true){
 		int n;
 		int nr;
+		// lee primera linea para n 
 		try {
 			n = new Integer(stdIn.readLine());
 			if (n <= 0 || n > 100000) {
@@ -56,6 +56,7 @@ public class Rotador {
 		} catch (IOException e) {
 			throw new Exception("No se recibió correctamente un entero n");
 		}
+		//lee segunda linea para tener el numero de rs
 		try {
 			nr = new Integer(stdIn.readLine());
 			if (nr < 0 | nr > 100000) {
@@ -66,7 +67,7 @@ public class Rotador {
 		} catch (IOException e) {
 			throw new Exception("No se recibió correctamente un entero nr");
 		}
-
+        //se leen todos los rs 
 		int i = 0;
 		int[][] rs = new int[nr][3];
 		while (i < nr) {
@@ -95,9 +96,9 @@ public class Rotador {
 		if (i != nr) {
 			throw new Exception("No se recibieron todos los valores de  r (p , q , k)" + i + " s " + nr);
 		}
-
+		//genera el arreglo a de [1..n]
 		int[] a = IntStream.range(1, n + 1).toArray();
-
+        //se instancia un Rotador para realizar las rotacinones 
 		rotador = new Rotador();
 		rotador.rotarMatriz(a, n, rs);
 		 }
