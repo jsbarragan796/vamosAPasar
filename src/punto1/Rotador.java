@@ -26,18 +26,16 @@ public class Rotador {
 		int k = r[2];
 		int[] resp = new int[a.length];
 		
-		for (int i = 0; i < a.length; i++) {
-			if (i >= p && i < q) {	
-				
+		for (int i = 0; i < a.length ; i++) {
+			if (i >= p && i < q) {					
 				int j = ((((i + k - p) % (q - p)) + (q - p)) % (q - p))+p;
-				System.out.println("iteracion "+ i + " j "+j);
+				
 				resp[j] = a[i];
 			} else {
 				resp[i] = a[i];
 			}
 		}
-		// SI(O(Y(p<i, i<q),Y(p=i, i<q)),RESIDUO(i-p+k,q-p)+p,i);
-		System.out.println(Arrays.toString(resp));
+				
 		return resp;
 	}
 
@@ -45,7 +43,7 @@ public class Rotador {
 		BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
 		Rotador rotador;
 
-		// while(true){
+		while(true){
 		int n;
 		int nr;
 		try {
@@ -102,10 +100,6 @@ public class Rotador {
 
 		rotador = new Rotador();
 		rotador.rotarMatriz(a, n, rs);
-
-		// System.out.println("n: " + n);
-		// System.out.println("rn: " + nr);
-		// System.out.println(Arrays.deepToString(rs));
-		// }
+		 }
 	}
 }
