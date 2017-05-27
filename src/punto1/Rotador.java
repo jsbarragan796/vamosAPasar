@@ -25,18 +25,19 @@ public class Rotador {
 		int q = r[1];
 		int k = r[2];
 		int[] resp = new int[a.length];
+		
 		for (int i = 0; i < a.length; i++) {
-			if (i >= p && i < q) {
-				int j = ((i + k - p) % (q - p)) + p;
-				System.out.println("iteracion " + i);
-				System.out.println("iteracion " + j +" i "+i+ " k "+k+" p "+p +" q "+q);
-
+			if (i >= p && i < q) {	
+				
+				int j = ((((i + k - p) % (q - p)) + (q - p)) % (q - p))+p;
+				System.out.println("iteracion "+ i + " j "+j);
 				resp[j] = a[i];
 			} else {
 				resp[i] = a[i];
 			}
 		}
 		// SI(O(Y(p<i, i<q),Y(p=i, i<q)),RESIDUO(i-p+k,q-p)+p,i);
+		System.out.println(Arrays.toString(resp));
 		return resp;
 	}
 
