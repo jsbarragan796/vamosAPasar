@@ -42,7 +42,7 @@ public class Coalicion {
 		} else {
 			// Cuando ya no se reguiere sumar, se procede a calcular la nomina
 			// con la actual combinacion
-			// Conparandola con la maxNomina se returna la mayor
+			// Comparandola con la maxNomina se retorna la mayor
 
 			double nomina = (p[p.length - 1] * 100) / sumaAcciones;
 			if (nomina > maxNomina) {
