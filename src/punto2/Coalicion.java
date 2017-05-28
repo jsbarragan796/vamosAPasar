@@ -50,9 +50,7 @@ public class Coalicion {
 			} else {
 				return maxNomina;
 			}
-
 		}
-
 	}
 
 	public static void main(String[] args) throws Exception {
