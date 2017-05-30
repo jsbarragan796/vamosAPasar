@@ -6,8 +6,6 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.StringTokenizer;
 
-import javax.swing.plaf.synth.SynthSpinnerUI;
-
 public class Alfametica {
 
 	public static void main(String[] args) throws Exception {
@@ -102,7 +100,6 @@ public class Alfametica {
 			}
 		}
 
-		System.out.println("uniandes " + Arrays.toString(restricciones));
 		darCombinacion(restricciones, letras, s, a);
 	}
 
@@ -117,7 +114,7 @@ public class Alfametica {
 
 			int[] posible = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
 					-1, -1, -1 };
-			char[] asigandos = { '*', '*', '*', '*', '*', '*', '*', '*', '*', '*' };
+			char[] asigandos = { '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'};
 			for (int i = 0; i < letras.length && (int) letras[i] != 0; i++) {
 				int letra = letras[i] - 65;
 				// si es primera palabra se descarta de la seleccion el 0
@@ -193,18 +190,20 @@ public class Alfametica {
 					}
 				}
 			}
-			// System.out.println(Arrays.toString(posible));
+			intentos++;
 			if (suma1 == suma2) {
 				System.out.println(Arrays.toString(asigandos));
 				encontro = true;
 				System.out.println("duracion: ms " + (System.currentTimeMillis() - inicio));
 			}
+			if (intentos==1628800) {
+				char[] asigandos2 = { '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'};
+				System.out.println(Arrays.toString(asigandos2));
+				encontro = true;
+				System.out.println("duracion: ms " + (System.currentTimeMillis() - inicio));
+			}
+			
 		}
 	}
-
-	public static boolean validar() {
-
-		return true;
-	}
-
+		
 }
