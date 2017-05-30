@@ -16,6 +16,7 @@ public class CoalicionV2 {
 		BufferedReader bf= new BufferedReader(new InputStreamReader(System.in));
 		String line= bf.readLine();
 		while(line!=null){
+			long tStart = System.currentTimeMillis();
 			int n= Integer.parseInt(line);
 			int[] p= new int[n];
 			StringTokenizer st= new StringTokenizer(bf.readLine(), " ");
@@ -24,15 +25,17 @@ public class CoalicionV2 {
 			}
 			double maxP= calcularMaximaNomina(p, 0, p[n - 1], n - 1);
 			System.out.println(String.format(Locale.ROOT,"%.2f", maxP));
+			long tEnd = System.currentTimeMillis();
+			long tDelta = tEnd - tStart;
+			double elapsedSeconds = tDelta / 1000.0;
+			System.out.println(elapsedSeconds);
 			line= bf.readLine();
 		}
 	}
-
 	// El metodo va realizando las combinaciones de acciones
 	// posibles de la suma de las acciones del socio n con las de los socios
 	// 0..indiceSumado
 	public static double calcularMaximaNomina(int[] p, double maxNomina, double sumaAcciones, int indiceSumado) {
-
 		double maxTemp = maxNomina;
 		// si la suma de acciones es menor a 50 es nesesario seguir sumando.
 		if (sumaAcciones <= 50) {
@@ -58,7 +61,6 @@ public class CoalicionV2 {
 			// Cuando ya no se reguiere sumar, se procede a calcular la nomina
 			// con la actual combinacion
 			// Conparandola con la maxNomina se returna la mayor
-
 			double nomina = (p[p.length - 1] * 100) / sumaAcciones;
 			if (nomina > maxNomina) {
 				return nomina;
