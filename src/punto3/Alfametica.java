@@ -5,12 +5,11 @@ import java.io.InputStreamReader;
 import java.util.Random;
 import java.util.StringTokenizer;
 
-
 /**
-* PROBLEMA C Proyecto DAlgo 2017-1
-* @autores  Juan Sebastian Barragan – Stephannie Jimenez
-*           201212774                 201423727
-*/
+ * PROBLEMA C Proyecto DAlgo 2017-1
+ * 
+ * @autores Juan Sebastian Barragan – Stephannie Jimenez 201212774 201423727
+ */
 
 public class Alfametica {
 
@@ -49,7 +48,7 @@ public class Alfametica {
 		int[] restricciones = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
 				-1, -1, -1 };
 		// Arreglo letras contiene las letras encontradas en las palabras
-		char[] letras = new char[10];
+		char[] letras = new char[25];
 
 		// indice letras agregadas a letras
 		int letrasAgregadas = 0;
@@ -112,12 +111,17 @@ public class Alfametica {
 			}
 		}
 
-		buscarRespuesta(restricciones, letras, s, a);
+		if (letrasAgregadas > 9) {
+			String asigandos2 = "**********";
+			System.out.println(asigandos2);
+		} else {
+			buscarRespuesta(restricciones, letras, s, a);
+		}
 	}
 
-	public static void buscarRespuesta(int[] condiciones, char[] letras,String[] s, String[] a) {
-		
-		int[] exponentes = { 0, 1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000 };
+	public static void buscarRespuesta(int[] condiciones, char[] letras, String[] s, String[] a) {
+
+		int[] exponentes = { 0, 1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000 };
 		Random aleatorio = new Random();
 		boolean encontro = false;
 		double intentos = factorial(10);
@@ -125,7 +129,7 @@ public class Alfametica {
 
 			int[] posible = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
 					-1, -1, -1 };
-			char[] asigandos = { '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'};
+			char[] asigandos = { '*', '*', '*', '*', '*', '*', '*', '*', '*', '*' };
 			for (int i = 0; i < letras.length && (int) letras[i] != 0; i++) {
 				int letra = letras[i] - 65;
 				// si es primera palabra se descarta de la seleccion el 0
@@ -201,30 +205,30 @@ public class Alfametica {
 					}
 				}
 			}
-			
-			// encuentra solucion 
+
+			// encuentra solucion
 			if (suma1 == suma2) {
-				String resp= new String(asigandos);
+				String resp = new String(asigandos);
 				System.out.println(resp);
 				encontro = true;
-				
+
 			}
-			//no encuentra solucion
-			if (intentos<0) {
+			// no encuentra solucion
+			if (intentos < 0) {
 				String asigandos2 = "**********";
 				System.out.println(asigandos2);
 				encontro = true;
-				
+
 			}
 			intentos--;
 		}
 	}
-	
-	public static double factorial (double numero) {
-		  if (numero==0)
-		    return 1;
-		  else
-		    return numero * factorial(numero-1);
-		}
+
+	public static double factorial(double numero) {
+		if (numero == 0)
+			return 1;
+		else
+			return numero * factorial(numero - 1);
+	}
 
 }
