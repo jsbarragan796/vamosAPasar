@@ -1,11 +1,12 @@
 package punto3;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.StringTokenizer;
+
+import javax.swing.plaf.synth.SynthSpinnerUI;
 
 public class Alfametica {
 
@@ -55,7 +56,9 @@ public class Alfametica {
 					if (esta == -1 || esta == -2) {
 						restricciones[(int) c - 65] = -3;
 						letras[letrasAgregadas] = c;
-						letrasAgregadas++;
+						if (esta == -1) {
+							letrasAgregadas++;
+						}
 					}
 				} else if (c == 43 || c == 45) {
 					// ignorar si es signo
@@ -82,7 +85,9 @@ public class Alfametica {
 					if (esta == -1 || esta == -2) {
 						restricciones[(int) c - 65] = -3;
 						letras[letrasAgregadas] = c;
-						letrasAgregadas++;
+						if (esta == -1) {
+							letrasAgregadas++;
+						}
 					}
 				} else if (c == 43 || c == 45) {
 					// ignorar si es signo
@@ -97,14 +102,17 @@ public class Alfametica {
 			}
 		}
 
+		System.out.println("uniandes " + Arrays.toString(restricciones));
 		darCombinacion(restricciones, letras, s, a);
 	}
 
 	public static void darCombinacion(int[] condiciones, char[] letras, String[] s, String[] a) {
 
-		int[] exponentes = { 0, 1, 10, 100, 1000, 10000, 100000, 1000000, 10000000 };
+		long inicio = System.currentTimeMillis();
+		int[] exponentes = { 0, 1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000 };
 		Random aleatorio = new Random();
 		boolean encontro = false;
+		int intentos = 0;
 		while (!encontro) {
 
 			int[] posible = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
@@ -140,7 +148,7 @@ public class Alfametica {
 					}
 				}
 			}
-
+			// verificar el resultado de las sumas
 			int suma1 = 0;
 			int suma2 = 0;
 
@@ -164,7 +172,6 @@ public class Alfametica {
 					}
 				}
 			}
-
 			for (int i = 0; i < s.length; i++) {
 				char[] c = s[i].toCharArray();
 				if (i % 2 == 0) {
@@ -186,13 +193,13 @@ public class Alfametica {
 					}
 				}
 			}
+			// System.out.println(Arrays.toString(posible));
 			if (suma1 == suma2) {
 				System.out.println(Arrays.toString(asigandos));
 				encontro = true;
+				System.out.println("duracion: ms " + (System.currentTimeMillis() - inicio));
 			}
-
 		}
-
 	}
 
 	public static boolean validar() {
