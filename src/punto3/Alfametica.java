@@ -121,7 +121,7 @@ public class Alfametica {
 
 	public static void buscarRespuesta(int[] condiciones, char[] letras, String[] s, String[] a) {
 
-		int[] exponentes = { 0, 1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000 };
+		int[] exponentes = { 0, 1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000,};
 		Random aleatorio = new Random();
 		boolean encontro = false;
 		double intentos = factorial(10);

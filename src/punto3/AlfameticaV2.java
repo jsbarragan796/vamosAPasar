@@ -43,10 +43,6 @@ public class AlfameticaV2 {
 			String[] v= Arrays.copyOf(s, s.length+a.length);
 			System.arraycopy(a, 0, v, s.length, a.length);
 			String sol= alf(v);
-//			System.out.println(sol);
-//			System.out.println(Arrays.toString(s));
-//			System.out.println(Arrays.toString(a));
-//			System.out.println(Arrays.toString(v));
 			line= bf.readLine();
 		}
 	}
