@@ -6,6 +6,11 @@ import java.io.InputStreamReader;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
+/**
+* PROBLEMA B Proyecto DAlgo 2017-1
+* @autores  Juan Sebastian Barragan – Stephannie Jimenez
+*           201212774                 201423727
+*/ 
 public class CoalicionV2 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader bf= new BufferedReader(new InputStreamReader(System.in));

@@ -2,13 +2,20 @@ package punto3;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.Random;
 import java.util.StringTokenizer;
+
+
+/**
+* PROBLEMA C Proyecto DAlgo 2017-1
+* @autores  Juan Sebastian Barragan – Stephannie Jimenez
+*           201212774                 201423727
+*/
 
 public class Alfametica {
 
 	public static void main(String[] args) throws Exception {
+
 		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
 		String line = bf.readLine();
 		while (line != null) {
@@ -35,12 +42,15 @@ public class Alfametica {
 	}
 
 	public static void alf(String[] s, String[] a) throws Exception {
+		// Arreglo de reglas donde la posicion corresponde al codigo ASCI-65
+		// (A=0)
 		// -1 no esta en las palabras, -2 es una letra que no esta en el inicio
-		// ,-3 es una letra de inicio no puede ser 0
+		// -3 es una letra de inicio no puede ser 0
 		int[] restricciones = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
 				-1, -1, -1 };
-		// contienen las letras para encontradas en las palabras
+		// Arreglo letras contiene las letras encontradas en las palabras
 		char[] letras = new char[10];
+
 		// indice letras agregadas a letras
 		int letrasAgregadas = 0;
 
@@ -80,9 +90,11 @@ public class Alfametica {
 				// i = 0 es la primera letra de una palabra
 				if (i == 0 && !(c == 43 || c == 45)) {
 					int esta = restricciones[(int) c - 65];
+
 					if (esta == -1 || esta == -2) {
 						restricciones[(int) c - 65] = -3;
 						letras[letrasAgregadas] = c;
+
 						if (esta == -1) {
 							letrasAgregadas++;
 						}
@@ -100,16 +112,14 @@ public class Alfametica {
 			}
 		}
 
-		darCombinacion(restricciones, letras, s, a);
+		buscarRespuesta(restricciones, letras, s, a);
 	}
 
-	public static void darCombinacion(int[] condiciones, char[] letras, String[] s, String[] a) {
-
-		long inicio = System.currentTimeMillis();
+	public static void buscarRespuesta(int[] condiciones, char[] letras,String[] s, String[] a) {
 		int[] exponentes = { 0, 1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000 };
 		Random aleatorio = new Random();
 		boolean encontro = false;
-		int intentos = 0;
+		double intentos = factorial(10);
 		while (!encontro) {
 
 			int[] posible = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
@@ -190,20 +200,30 @@ public class Alfametica {
 					}
 				}
 			}
-			intentos++;
-			if (suma1 == suma2) {
-				System.out.println(Arrays.toString(asigandos));
-				encontro = true;
-				System.out.println("duracion: ms " + (System.currentTimeMillis() - inicio));
-			}
-			if (intentos==1628800) {
-				char[] asigandos2 = { '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'};
-				System.out.println(Arrays.toString(asigandos2));
-				encontro = true;
-				System.out.println("duracion: ms " + (System.currentTimeMillis() - inicio));
-			}
 			
+			// encuentra solucion 
+			if (suma1 == suma2) {
+				String resp= new String(asigandos);
+				System.out.println(resp);
+				encontro = true;
+				
+			}
+			//no encuentra solucion
+			if (intentos<0) {
+				String asigandos2 = "**********";
+				System.out.println(asigandos2);
+				encontro = true;
+				
+			}
+			intentos--;
 		}
 	}
-		
+	
+	public static double factorial (double numero) {
+		  if (numero==0)
+		    return 1;
+		  else
+		    return numero * factorial(numero-1);
+		}
+
 }
