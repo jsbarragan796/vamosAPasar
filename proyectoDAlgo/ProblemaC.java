@@ -1,4 +1,3 @@
-package punto3;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -116,7 +115,6 @@ public class Alfametica {
 	}
 
 	public static void buscarRespuesta(int[] condiciones, char[] letras,String[] s, String[] a) {
-		
 		int[] exponentes = { 0, 1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000 };
 		Random aleatorio = new Random();
 		boolean encontro = false;
@@ -201,25 +199,25 @@ public class Alfametica {
 					}
 				}
 			}
-			
-			// encuentra solucion 
+
+			// encuentra solucion
 			if (suma1 == suma2) {
 				String resp= new String(asigandos);
 				System.out.println(resp);
 				encontro = true;
-				
+
 			}
 			//no encuentra solucion
 			if (intentos<0) {
 				String asigandos2 = "**********";
 				System.out.println(asigandos2);
 				encontro = true;
-				
+
 			}
 			intentos--;
 		}
 	}
-	
+
 	public static double factorial (double numero) {
 		  if (numero==0)
 		    return 1;
