@@ -10,7 +10,7 @@ import java.util.StringTokenizer;
  * @autores Juan Sebastian Barragan – Stephannie Jimenez 201212774 201423727
  */
 
-public class Alfametica {
+public class ProblemaC{
     
     public static void main(String[] args) throws Exception {
         
